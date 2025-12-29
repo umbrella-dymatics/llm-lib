@@ -82,6 +82,7 @@ If you are unsure about licensing:
 - Prefer linking instead of copying
 - Or mark the artifact as `standard`
 - Add source information if available
+- **Tip:** Point `source.origin` to the global documentation root/index, not a specific file url.
 
 Example:
 

@@ -1,0 +1,35 @@
+name: Update Artifact Index
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'docs/**'
+      - 'scripts/generate-index.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install js-yaml
+
+    - name: Generate Index
+      run: node scripts/generate-index.js
+
+    - name: Commit and Push Index
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "chore: update index.json [skip ci]"
+        file_pattern: index.json

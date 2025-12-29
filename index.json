@@ -1,0 +1,14 @@
+{
+  "updated_at": "2025-12-29T14:32:09.523Z",
+  "count": 1,
+  "artifacts": {
+    "@cloudflare/workers": {
+      "path": "docs/@cloudflare/workers",
+      "profiles": [
+        "full",
+        "standard"
+      ],
+      "description": "Cloudflare Workers & Pages documentation. Includes global context for Workers, Pages, and related bindings.\n"
+    }
+  }
+}
