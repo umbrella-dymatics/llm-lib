@@ -23,10 +23,12 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies
-      run: npm install js-yaml
+      working-directory: ./scripts
+      run: npm install
 
     - name: Generate Index
-      run: node scripts/generate-index.js
+      working-directory: ./scripts
+      run: node generate-index.js
 
     - name: Commit and Push Index
       uses: stefanzweifel/git-auto-commit-action@v5
