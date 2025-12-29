@@ -1,0 +1,7 @@
+name: "@cloudflare/agents"
+description: "Cloudflare Agents documentation context."
+source:
+  origin: "https://developers.cloudflare.com/agents/"
+profiles:
+  full:
+    entry: llm-full.txt
