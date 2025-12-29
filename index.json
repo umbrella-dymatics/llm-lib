@@ -1,7 +1,15 @@
 {
-  "updated_at": "2025-12-29T14:32:43.690Z",
-  "count": 1,
+  "updated_at": "2025-12-29T14:46:55.695Z",
+  "count": 2,
   "artifacts": {
+    "@cloudflare/agents": {
+      "path": "docs/@cloudflare/agents",
+      "profiles": [
+        "full",
+        "standard"
+      ],
+      "description": "Cloudflare Agents documentation context."
+    },
     "@cloudflare/workers": {
       "path": "docs/@cloudflare/workers",
       "profiles": [
