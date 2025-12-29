@@ -61,7 +61,7 @@ docs/
       ├─ llm.yaml        (optional, recommended)
       ├─ llm-full.md
       ├─ llm-lite.md
-      └─ raw.md
+      └─ llm.md
 ```
 
 Rules:
@@ -89,6 +89,16 @@ Priority order:
 llm.yaml > llm.md > llm-*.md/txt
 ```
 
+### Implicit Mapping (Zero-Config)
+
+If `llm.yaml` is missing, files are automatically mapped:
+
+| Filename | Profile |
+|------|------|
+| `llm-full.*` | `full` |
+| `llm-lite.*` | `lite` |
+| `llm.*` | `standard` |
+
 ---
 
 ## Profiles
@@ -99,7 +109,7 @@ llm.yaml > llm.md > llm-*.md/txt
 |------|------|
 | `lite` | Tool usage, token-sensitive |
 | `full` | Reasoning, design, agent context |
-| `raw` | Near-original documentation |
+| `standard` | Near-original documentation (Baseline) |
 
 Profiles are a **convention**, not a requirement.
 

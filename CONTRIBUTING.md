@@ -21,6 +21,7 @@ Minimal requirements:
 
 - Clear source
 - No intentional semantic modification
+- UTF-8 encoded
 
 ---
 
@@ -29,7 +30,7 @@ Minimal requirements:
 Without touching the original content, you may add:
 
 - `llm.yaml`
-- Profile mappings (`full`, `lite`, `raw`)
+- Profile mappings (`full`, `lite`, `standard`)
 - File slicing or intent description
 
 This is often more useful than rewriting documentation.
@@ -79,7 +80,7 @@ This project intentionally avoids strict schema enforcement.
 If you are unsure about licensing:
 
 - Prefer linking instead of copying
-- Or mark the artifact as `raw`
+- Or mark the artifact as `standard`
 - Add source information if available
 
 Example:
