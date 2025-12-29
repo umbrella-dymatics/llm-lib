@@ -7,11 +7,11 @@ const OUTPUT_FILE = path.join(__dirname, '../index.json');
 
 function scanArtifacts(dir) {
   let artifacts = {};
-  
+
   if (!fs.existsSync(dir)) return artifacts;
 
   const scopes = fs.readdirSync(dir).filter(f => f.startsWith('@'));
-  
+
   for (const scope of scopes) {
     const scopePath = path.join(dir, scope);
     if (!fs.statSync(scopePath).isDirectory()) continue;
@@ -44,20 +44,20 @@ function scanArtifacts(dir) {
       const files = fs.readdirSync(artifactPath);
       files.forEach(f => {
         if (f.startsWith('llm-full.')) {
-            if (!artifactData.profiles.includes('full')) artifactData.profiles.push('full');
+          if (!artifactData.profiles.includes('full')) artifactData.profiles.push('full');
         } else if (f.startsWith('llm-lite.')) {
-            if (!artifactData.profiles.includes('lite')) artifactData.profiles.push('lite');
-        } else if (f.startsWith('llm.')) {
-            if (!artifactData.profiles.includes('standard')) artifactData.profiles.push('standard');
+          if (!artifactData.profiles.includes('lite')) artifactData.profiles.push('lite');
+        } else if (f.startsWith('llm.') && !f.endsWith('.yaml')) {
+          if (!artifactData.profiles.includes('standard')) artifactData.profiles.push('standard');
         }
       });
 
       // 3. Normalize
       if (artifactData.profiles.length === 0 && !fs.existsSync(yamlPath)) {
-         // Skip empty folders that are not valid artifacts
-         continue; 
+        // Skip empty folders that are not valid artifacts
+        continue;
       }
-      
+
       artifacts[artifactId] = artifactData;
     }
   }
