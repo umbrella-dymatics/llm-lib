@@ -1,0 +1,7 @@
+name: "@anthropic/claude-code"
+description: "Claude Code documentation - Anthropic's agentic coding tool that lives in your terminal"
+source:
+  origin: "https://code.claude.com/docs"
+profiles:
+  full:
+    entry: llm-full.txt

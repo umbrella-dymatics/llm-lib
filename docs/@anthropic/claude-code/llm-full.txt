@@ -1,0 +1,489 @@
+<page>
+---
+title: Claude Code · Anthropic's Agentic Coding Tool
+description: Claude Code is an agentic coding tool that lives in your terminal, helping you turn ideas into code faster. It can build features, debug issues, navigate codebases, and automate tasks.
+lastUpdated: 2025-12-29T00:00:00.000Z
+chatbotDeprioritize: false
+tags: AI, Development, CLI, Coding
+source_url:
+  html: https://code.claude.com/docs
+  md: https://code.claude.com/docs
+---
+
+# Claude Code Documentation
+
+## Overview
+
+Claude Code is Anthropic's agentic coding tool that lives in your terminal and helps you turn ideas into code faster than ever before.
+
+### Get Started in 30 Seconds
+
+**Prerequisites:** A Claude.ai or Claude Console account
+
+**Install Claude Code:**
+
+**macOS, Linux, WSL:**
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+**Windows PowerShell:**
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+**Windows CMD:**
+```cmd
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+
+**Homebrew:**
+```bash
+brew install --cask claude-code
+```
+
+**NPM (requires Node.js 18+):**
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+**Start using Claude Code:**
+```bash
+cd your-project
+claude
+```
+
+### What Claude Code Does
+
+- **Build features from descriptions**: Tell Claude what you want to build in plain English
+- **Debug and fix issues**: Describe bugs or paste error messages for analysis and fixes
+- **Navigate any codebase**: Ask questions about your team's codebase
+- **Automate tedious tasks**: Fix lint issues, resolve merge conflicts, write release notes
+
+### Why Developers Love Claude Code
+
+- **Works in your terminal**: Meets you where you already work
+- **Takes action**: Directly edits files, runs commands, creates commits
+- **Unix philosophy**: Composable and scriptable
+- **Enterprise-ready**: API access, AWS/GCP hosting, enterprise security
+
+## Quickstart
+
+### Basic Usage Examples
+
+**Ask Claude to build features:**
+```
+claude "Add user authentication with OAuth to this Express app"
+```
+
+**Debug issues:**
+```
+claude "Fix the memory leak in this React component"
+```
+
+**Navigate codebase:**
+```
+claude "How does our database migration system work?"
+```
+
+**Run commands:**
+```
+claude -p "Run the tests and fix any failures"
+```
+
+### Interactive Mode
+
+Start interactive session:
+```bash
+claude
+```
+
+Then use natural language prompts or slash commands.
+
+## Common Workflows
+
+### Code Development
+
+**Build from description:**
+```
+Create a REST API endpoint for user registration with email validation
+```
+
+**Refactor code:**
+```
+Refactor this service to use dependency injection
+```
+
+**Write tests:**
+```
+Write comprehensive unit tests for the payment processing module
+```
+
+### Debugging
+
+**Fix bugs:**
+```
+The login form shows "undefined" error on submit - fix it
+```
+
+**Analyze errors:**
+```
+Analyze this stack trace and suggest a fix
+```
+
+### Git Operations
+
+**Resolve merge conflicts:**
+```
+Help me resolve these merge conflicts in src/components/
+```
+
+**Create commits:**
+```
+Review my changes and create a descriptive commit
+```
+
+## IDE Integrations
+
+### Visual Studio Code
+
+**Installation:**
+1. Open VS Code
+2. Go to Extensions marketplace
+3. Search for "Claude Code"
+4. Install the extension
+
+**Features:**
+- Inline diffs
+- @-mentions
+- Plan review
+- Keyboard shortcuts
+
+### JetBrains IDEs
+
+**Supported IDEs:**
+- IntelliJ IDEA
+- PyCharm
+- WebStorm
+- GoLand
+- Rider
+- CLion
+
+**Installation:**
+1. Open JetBrains IDE
+2. Go to Settings → Plugins
+3. Search for "Claude Code"
+4. Install and configure
+
+## GitHub Actions Integration
+
+### Basic Setup
+
+```yaml
+name: Claude Code Review
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@main
+        with:
+          api_key: ${{ secrets.CLAUDE_API_KEY }}
+          prompt: "Review this PR for code quality and suggest improvements"
+```
+
+### Auto-fix Workflow
+
+```yaml
+name: Claude Auto-fix
+on:
+  push:
+    branches: [main]
+
+jobs:
+  auto-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Fix linting issues
+        uses: anthropics/claude-code-action@main
+        with:
+          api_key: ${{ secrets.CLAUDE_API_KEY }}
+          prompt: "Fix all linting issues in the codebase"
+```
+
+## GitLab CI/CD Integration
+
+### .gitlab-ci.yml
+
+```yaml
+claude-fix:
+  image: anthropic/claude-code:latest
+  script:
+    - claude -p "Fix any issues in the code and commit changes"
+  only:
+    - merge_requests
+```
+
+## Model Context Protocol (MCP)
+
+### What is MCP?
+
+MCP allows Claude Code to connect to external data sources and tools.
+
+### Configuration
+
+**Add MCP servers to your config:**
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/project"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+### Common MCP Servers
+
+- **Filesystem**: Read/write files
+- **GitHub**: Manage repositories, issues, PRs
+- **Slack**: Send messages, read channels
+- **Figma**: Access design files
+- **Google Drive**: Read documents
+- **Jira**: Manage tickets
+
+## Configuration
+
+### Settings Files
+
+**Global settings:** `~/.claude/settings.json`
+
+**Project settings:** `.claude/settings.json`
+
+### Key Configuration Options
+
+```json
+{
+  "model": "claude-3-5-sonnet-20241022",
+  "max_tokens": 4096,
+  "temperature": 0.1,
+  "auto_update": true,
+  "permissions": {
+    "read": true,
+    "write": true,
+    "execute": false
+  },
+  "mcpServers": {},
+  "hooks": {
+    "pre_prompt": "echo 'Starting Claude session'",
+    "post_response": "echo 'Response received'"
+  }
+}
+```
+
+### Environment Variables
+
+```bash
+CLAUDE_API_KEY=your_api_key
+CLAUDE_MODEL=claude-3-5-sonnet-20241022
+CLAUDE_MAX_TOKENS=4096
+CLAUDE_TEMPERATURE=0.1
+```
+
+## CLI Reference
+
+### Basic Commands
+
+```bash
+# Start interactive session
+claude
+
+# Single prompt
+claude "Your prompt here"
+
+# Pipe input
+echo "code" | claude -p "Analyze this"
+
+# Read from file
+claude -p "Review this code" < file.js
+
+# Multiple prompts
+claude -p "First task" -p "Second task"
+```
+
+### Command Options
+
+```
+claude [options] [prompt]
+
+Options:
+  -p, --prompt <prompt>     Single prompt mode
+  -f, --file <file>         Read prompt from file
+  -m, --model <model>       Specify model
+  -t, --max-tokens <num>    Maximum tokens
+  --temperature <temp>      Temperature setting
+  --no-stream               Disable streaming
+  --verbose                 Verbose output
+  --debug                   Debug mode
+  --version                 Show version
+  --help                    Show help
+```
+
+### Interactive Mode Commands
+
+**Slash commands:**
+- `/help` - Show help
+- `/clear` - Clear context
+- `/exit` - Exit session
+- `/commit` - Create git commit
+- `/debug` - Toggle debug mode
+
+## Advanced Features
+
+### Subagents
+
+Create specialized agents for specific tasks:
+
+```json
+{
+  "subagents": {
+    "frontend-expert": {
+      "description": "React and TypeScript specialist",
+      "model": "claude-3-5-sonnet",
+      "skills": ["react", "typescript", "css"]
+    },
+    "backend-expert": {
+      "description": "Python and database specialist",
+      "model": "claude-3-5-sonnet",
+      "skills": ["python", "sql", "api-design"]
+    }
+  }
+}
+```
+
+### Hooks
+
+**Pre and post execution hooks:**
+```json
+{
+  "hooks": {
+    "pre_prompt": ["npm run lint", "git status"],
+    "post_response": ["npm test", "echo 'Done'"]
+  }
+}
+```
+
+### Plugins
+
+**Create custom plugins:**
+```javascript
+// .claude/plugins/my-plugin.js
+export default {
+  name: "my-plugin",
+  commands: {
+    deploy: {
+      description: "Deploy to production",
+      handler: async (args) => {
+        // Custom logic
+      }
+    }
+  }
+};
+```
+
+## Security & Privacy
+
+### Data Usage
+
+- Code is processed securely
+- No training on your code
+- Enterprise options available
+
+### Permissions
+
+Configure what Claude Code can access:
+```json
+{
+  "permissions": {
+    "read": ["src/", "tests/"],
+    "write": ["src/", "dist/"],
+    "execute": ["npm", "git"],
+    "deny": ["node_modules/", ".env"]
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Installation fails:**
+```bash
+# Check Node.js version
+node --version  # Should be 18+
+
+# Clear npm cache
+npm cache clean --force
+
+# Try reinstalling
+npm install -g @anthropic-ai/claude-code --force
+```
+
+**API errors:**
+```bash
+# Check API key
+echo $CLAUDE_API_KEY
+
+# Test connection
+claude -p "Hello" --verbose
+```
+
+**Permission denied:**
+```bash
+# Check permissions
+claude --debug
+
+# Reset permissions
+claude --reset-permissions
+```
+
+### Getting Help
+
+- Documentation: https://code.claude.com/docs
+- Support: https://support.claude.com
+- Community: Discord, GitHub discussions
+
+## Reference Implementation
+
+### Development Container
+
+Clone the reference implementation:
+```bash
+git clone https://github.com/anthropics/claude-code/tree/main/.devcontainer
+```
+
+### Docker Setup
+
+```dockerfile
+FROM node:18-alpine
+RUN npm install -g @anthropic-ai/claude-code
+WORKDIR /workspace
+CMD ["claude"]
+```
+
+This documentation provides comprehensive context about Claude Code for LLM usage.
+</page>
