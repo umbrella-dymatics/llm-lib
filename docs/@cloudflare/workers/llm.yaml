@@ -1,0 +1,9 @@
+name: "@cloudflare/workers"
+description: >
+  Cloudflare Workers & Pages documentation.
+  Includes global context for Workers, Pages, and related bindings.
+source:
+  origin: "https://developers.cloudflare.com/workers/"
+profiles:
+  full:
+    entry: llm-full.txt
